@@ -66,6 +66,7 @@ abstract class ConanInstallTask @Inject constructor(
         execOperations.exec {
             commandLine(conanExecutable)
             args(args)
+            errorOutput = System.out
             workingDir = conanfileDir
 
             if (venvBinDir.exists()) {
@@ -80,13 +81,13 @@ abstract class ConanInstallTask @Inject constructor(
 val repoRoot = layout.projectDirectory.dir("../../")
 
 android {
-    namespace = "org.libsdl.app"
+    namespace = "org.grinlexstudios.skylabs"
 
     compileSdk = 37
     ndkVersion = "30.0.15729638"
 
     defaultConfig {
-        applicationId = "ru.grinlexstudios.skylabs"
+        applicationId = "org.grinlexstudios.skylabs"
 
         minSdk = 33
         targetSdk = 37
