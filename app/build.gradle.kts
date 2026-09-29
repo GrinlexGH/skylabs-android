@@ -16,10 +16,14 @@ abstract class ConanInstallTask @Inject constructor(
     @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val conanFile: RegularFileProperty
 
-    @get:Input abstract val arch: Property<String>
-    @get:Input abstract val apiLevel: Property<Int>
-    @get:Input abstract val buildType: Property<String>
-    @get:Input abstract val ndkPath: Property<String>
+    @get:Input
+    abstract val arch: Property<String>
+    @get:Input
+    abstract val apiLevel: Property<Int>
+    @get:Input
+    abstract val buildType: Property<String>
+    @get:Input
+    abstract val ndkPath: Property<String>
 
     @get:OutputDirectory
     abstract val outputDir: DirectoryProperty
@@ -84,7 +88,7 @@ android {
     namespace = "org.grinlexstudios.skylabs"
 
     compileSdk = 37
-    ndkVersion = "30.0.15729638"
+    ndkVersion = "30.0.16248370"
 
     defaultConfig {
         applicationId = "org.grinlexstudios.skylabs"
@@ -97,7 +101,8 @@ android {
 
         externalNativeBuild {
             cmake {
-                val toolchainPath = repoRoot.file("cmake/ConanAndroidToolchain.cmake").asFile.absolutePath
+                val toolchainPath =
+                    repoRoot.file("cmake/ConanAndroidToolchain.cmake").asFile.absolutePath
                 arguments += listOf("-DCMAKE_TOOLCHAIN_FILE=$toolchainPath")
                 abiFilters += listOf("arm64-v8a")
             }
@@ -145,7 +150,7 @@ androidComponents {
 
                 val conanfileTxt = repoRoot.file("conanfile.txt").asFile
                 val conanfilePy = repoRoot.file("conanfile.py").asFile
-                
+
                 val conanArch = when (abi) {
                     "arm64-v8a" -> "armv8"
                     "armeabi-v7a" -> "armv7"
